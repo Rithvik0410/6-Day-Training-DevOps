@@ -1,58 +1,112 @@
-md
-🚀 Kubernetes Overview
-Step 1:
-Create a jump server (or bastion host) and connect to the server instance.
+# 📅 **Day 5 – 🚀 Kubernetes Overview**
 
-Step 2:
-Install the necessary tools: kubectl, ecsctl, and awscli.
+---
 
-What is Kubernetes?
-Kubernetes is a powerful container orchestration tool that automates deployment, scaling, and management of containerized applications. It manages a cluster of nodes, ensuring that your applications run smoothly, even in large-scale environments.
+## 🪜 Step-by-Step Setup
 
-Steps to Set Up Kubernetes 🌐
-Create a Jump Server (Bastion Host) 🌐
-First, set up a jump server that will act as the gateway to access your Kubernetes cluster.
+### **Step 1: Create a Jump Server (Bastion Host)**
 
-Install Necessary Tools 🛠️
+- Set up a **jump server** to act as a secure entry point to your Kubernetes cluster.
 
-Install kubectl, ecsctl, and awscli for managing the Kubernetes environment.
-Configure your AWS CLI with aws configure (Enter Access Key & Secret Key).
-Kubernetes Cluster Components 🖧
-1. Master Node Components 👑
-API Server 🖥️: The "brain" of the cluster. It manages everything, including scaling and load balancing.
-ETCD 📚: A key-value store for all cluster data.
-Controller Manager 🔧: Monitors and ensures the desired state of your applications.
-Scheduler 📅: Decides where to place Pods (the smallest deployable units).
-2. Worker Node Components 🧑‍💻
-Kubelet 🔄: Responsible for creating and managing Pods in the worker node.
-Container Runtime 🛠️: Like Docker, it runs and manages containers.
-Kube-Proxy 🌐: A networking component that manages access to the application over the internet.
-Cluster Types 🏗️
-On-Premises Cluster 🏢
-Managed by your team, including handling downtime and troubleshooting.
+### **Step 2: Install Required Tools**
 
-Cloud Managed Cluster (EKS) ☁️
-Managed by AWS, reducing the burden of maintenance.
+- Install the following:
+  - `kubectl` – Kubernetes command-line tool
+  - `ecsctl` – Tool to manage ECS clusters
+  - `awscli` – AWS CLI for interacting with AWS services
+- Run `aws configure` to set up your AWS credentials.
 
-Important Kubernetes Concepts 💡
-Pod 🏃‍♂️: The smallest deployable unit in Kubernetes, containing containers.
-Scaling 📈:
-Horizontal Scaling ➡️ Adding more nodes.
-Vertical Scaling ⬆️ Increasing node resources.
-Self-Healing 🔄: Automatically replaces failed containers or nodes.
-Kubernetes Architecture in Detail 🏰
-Master Node 👑
+---
 
-The API Server is the main point of interaction for managing the Kubernetes cluster.
-ETCD stores the configuration and state.
-Controller monitors the cluster and ensures the desired state is maintained.
-Scheduler assigns tasks (Pods) to the worker nodes.
-Worker Node 🧑‍💻
+## ❓ What is Kubernetes?
 
-Kubelet: Ensures the Pods are running as expected.
-Container Runtime: Manages containers on the node.
-Kube-Proxy: Handles network routing for Pods.
-Kubernetes Resource Units 🧮
-CPU 💻: 1 CPU = 1000 millicores (m).
-Memory 🧠: 1 GB = 1024 MB.
+**Kubernetes** is a **container orchestration platform** that automates:
 
+- **Deployment**
+- **Scaling**
+- **Maintenance**
+- **Networking**
+
+It manages a **cluster of nodes** and ensures application reliability, even in complex environments.
+
+---
+
+## 🌐 Setting Up Kubernetes
+
+### 🔹 Create a Jump Server
+
+- Acts as a **gateway** to your Kubernetes cluster.
+
+### 🔹 Install Essential Tools
+
+- `kubectl`, `ecsctl`, `awscli`
+- Set up with AWS credentials for cluster access
+
+---
+
+## 🖧 Kubernetes Cluster Components
+
+### 👑 **Master Node Components**
+
+| Component                 | Description                                             |
+| ------------------------- | ------------------------------------------------------- |
+| **API Server** 🖥️         | The central control unit of the cluster.                |
+| **ETCD** 📚               | A distributed key-value store holding all cluster data. |
+| **Controller Manager** 🔧 | Ensures the desired state of the system is maintained.  |
+| **Scheduler** 📅          | Assigns Pods to nodes based on availability and need.   |
+
+---
+
+### 🧑‍💻 **Worker Node Components**
+
+| Component                | Description                                                        |
+| ------------------------ | ------------------------------------------------------------------ |
+| **Kubelet** 🔄           | Interacts with the container runtime and ensures Pods are running. |
+| **Container Runtime** 🛠️ | Software like Docker that runs containers.                         |
+| **Kube-Proxy** 🌐        | Manages network rules and allows Pods to communicate.              |
+
+---
+
+## 🏗️ Types of Kubernetes Clusters
+
+| Type                       | Managed By | Responsibility Level                                  |
+| -------------------------- | ---------- | ----------------------------------------------------- |
+| **On-Premises** 🏢         | Your team  | Full responsibility (updates, backups, scaling, etc.) |
+| **Cloud Managed (EKS)** ☁️ | AWS        | AWS manages control plane; you manage worker nodes    |
+
+---
+
+## 💡 Key Kubernetes Concepts
+
+- **Pod** 🏃‍♂️: Smallest deployable unit in Kubernetes; contains one or more containers.
+- **Scaling** 📈:
+  - **Horizontal** ➡️: Add more Pods.
+  - **Vertical** ⬆️: Increase Pod resources.
+- **Self-Healing** 🔄:
+  - Automatically restarts, replaces, or reschedules failed containers and nodes.
+
+---
+
+## 🏰 Kubernetes Architecture Overview
+
+### Master Node 👑
+
+- **API Server**: Handles all REST commands for the cluster.
+- **ETCD**: Stores state/configuration.
+- **Controller Manager**: Keeps the system in the desired state.
+- **Scheduler**: Assigns workloads (Pods) to available worker nodes.
+
+### Worker Node 🧑‍💻
+
+- **Kubelet**: Runs and reports status of containers.
+- **Container Runtime**: Runs containerized apps.
+- **Kube-Proxy**: Manages network access to Pods.
+
+---
+
+## 🧮 Kubernetes Resource Units
+
+- **CPU** 💻:
+  - `1 CPU` = `1000 millicores (m)`
+- **Memory** 🧠:
+  - `1 GB` = `1024 MB`
