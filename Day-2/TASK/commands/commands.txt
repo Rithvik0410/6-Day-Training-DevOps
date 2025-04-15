@@ -1,5 +1,5 @@
- chmod 400 "ashil-webser.pem"
- ssh -i "ashil-webser.pem" ec2-user@ec2-54-166-75-9.compute-1.amazonaws.com
+ chmod 400 "rithvik-webser.pem"
+ ssh -i "rithvik-webser.pem" ec2-user@ec2-54-166-75-9.compute-1.amazonaws.com
  sudo su
  
     1  yum install httpd
@@ -9,7 +9,7 @@
     5  service httpd status
     6  service httpd start
     7  yum install git -y
-    8  git clone -b main https://github.com/ashil2003/Coursevita-Retail-Project.git
+    8  git clone -b main https://github.com/rithvik2003/Coursevita-Retail-Project.git
     9  ls
    10  cd Coursevita-Retail-Project  Oracle-Training-Retail
    11  cp -r . /var/www/html

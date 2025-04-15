@@ -40,8 +40,8 @@ docker exec -it node-app /bin/bash     here node-app is the name..check through 
 exit
 docker login
 docker images
-docker tag web-app-nodejs:1.0 ashil/web-app-nodejs
+docker tag web-app-nodejs:1.0 rithvik/web-app-nodejs
 docker images
-docker push ashil/web-app-nodejs
-docker run -td --name web-app1 -p 3015:3015 ashil/web-app-nodejs:latest     ->in terminal
+docker push rithvik/web-app-nodejs
+docker run -td --name web-app1 -p 3015:3015 rithvik/web-app-nodejs:latest     ->in terminal
 

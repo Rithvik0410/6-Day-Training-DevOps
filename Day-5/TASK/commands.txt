@@ -9,8 +9,8 @@ step
 
 commands:
 
-chmod 400 "ashil-bastionhost.pem"
-ssh -i "ashil-bastionhost.pem" ubuntu@ec2-54-196-153-144.compute-1.amazonaws.com
+chmod 400 "rithvik-bastionhost.pem"
+ssh -i "rithvik-bastionhost.pem" ubuntu@ec2-54-196-153-144.compute-1.amazonaws.com
 sudo su
 vi cluster.sh
   \\\paste the text from github//installing kubernetes etc
@@ -20,12 +20,12 @@ sh cluster.sh
 aws configure
 //create user and copy the access code and secret key
 eskctl
-eksctl create cluster --name ashil-cluster --version 1.31 --region us-east-1 --nodegroup-name test-linux --node-type t2.micro --nodes 3 --nodes-min 3 --nodes-max 5 --managed
+eksctl create cluster --name rithvik-cluster --version 1.31 --region us-east-1 --nodegroup-name test-linux --node-type t2.micro --nodes 3 --nodes-min 3 --nodes-max 5 --managed
 snap install kubectl --classic
-aws eks update-kubeconfig --name ashil-cluster --region us-east-1
+aws eks update-kubeconfig --name rithvik-cluster --region us-east-1
 kubectl get nodes  -> to see the the nodes..
 
-git clone https://github.com/ashil2003/ashil-kubernetes-manifests.git
+git clone https://github.com/rithvik2003/rithvik-kubernetes-manifests.git
  ls
  cd //to repo folder
  kubectl apply -f pod.yaml

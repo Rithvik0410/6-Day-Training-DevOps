@@ -7,10 +7,10 @@ EC2 Instance Launch:
 Launched an EC2 instance using Amazon Linux. While creating the instance, we downloaded a .pem (private key) file for secure SSH access, as we were using a Linux system.
 Example command to set proper permissions on the .pem file:
 
-sudo chmod 400 ashil.pem
+sudo chmod 400 rithvik.pem
 SSH into EC2 Instance:
 Connected to the instance using the .pem file:
-ssh -i "ashil.pem" ec2-user@ec2-3-23-45-67.compute-1.amazonaws.com
+ssh -i "rithvik.pem" ec2-user@ec2-3-23-45-67.compute-1.amazonaws.com
 Activate Amazon Linux & Update Packages:
 Once connected, we updated and prepared the system for software installation:
 
@@ -32,5 +32,3 @@ Learned secure SSH practices using .pem keys on Linux.
 Deployed code from GitHub to a cloud server.
 
 Managed AWS costs by identifying and shutting down unused services.
-
-

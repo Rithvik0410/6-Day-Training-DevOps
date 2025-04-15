@@ -31,17 +31,17 @@ output block / output.tf – Prints important values like public IPs or resource
 📝 Example: ec2.tf
 
 provider "aws" {
-  region = "us-east-1"
+region = "us-east-1"
 }
 
 resource "aws_instance" "web" {
-  ami           = "ami-02f624c08a83ca16f"
-  instance_type = "t2.micro"
-  key_name      = "ash-server"
+ami = "ami-02f624c08a83ca16f"
+instance_type = "t2.micro"
+key_name = "ash-server"
 
-  tags = {
-    Name = "ashil"
-  }
+tags = {
+Name = "rithvik"
+}
 }
 To create an EC2 instance, ensure the following details are provided:
 
@@ -57,12 +57,12 @@ Instance tag name
 
 🧪 Commands Used:
 
-Command	Description
-terraform init	Initializes the working directory and downloads necessary plugins
-terraform validate	Validates the configuration for syntax errors
-terraform plan	Shows a preview of the changes Terraform will make
-terraform apply	Applies the configuration to create the resources
-terraform destroy	Destroys all resources created by Terraform
+Command Description
+terraform init Initializes the working directory and downloads necessary plugins
+terraform validate Validates the configuration for syntax errors
+terraform plan Shows a preview of the changes Terraform will make
+terraform apply Applies the configuration to create the resources
+terraform destroy Destroys all resources created by Terraform
 Note:
 
 After terraform plan or apply, a terraform.tfstate file is created to store the current infrastructure state. This file is sensitive and should be securely stored, ideally using Terraform Cloud or a remote backend.
