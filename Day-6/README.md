@@ -7,14 +7,14 @@ kubectl get namespace
 🔹 Show all resources in kube-system namespace:
 kubectl get all -n kube-system
 🔹 Create a custom namespace:
-kubectl create ns shrinidhi
+kubectl create ns rithvik
 🔹 List all namespaces:
 kubectl get ns
 Running Pods in a Namespace 🚀
-🔹 Run a pod in the custom namespace shrinidhi using the nginx image:
-kubectl run test-pod --image=nginx --port=80 -n shrinidhi
-🔹 Check if the pod was created in the shrinidhi namespace:
-kubectl get pods -n shrinidhi
+🔹 Run a pod in the custom namespace rithvik using the nginx image:
+kubectl run test-pod --image=nginx --port=80 -n rithvik
+🔹 Check if the pod was created in the rithvik namespace:
+kubectl get pods -n rithvik
 🔹 Delete the pod:
 kubectl delete pod test-pod -n ash
 Replica Set (rs.yaml) 🔄
@@ -41,7 +41,6 @@ kubectl apply -f service.yaml
 kubectl apply -f name.yaml -n ash
 🔹 Get the URL to access the service (use with port number):
 kubectl get svc -n ash
-
 
 Kubernetes Core Concepts 📚
 🔸 What is a Namespace? 🌏
@@ -91,5 +90,3 @@ Configuration Management 🔧
 Ansible:
 
 Automates Kubernetes resource setup, config, and deployment tasks.
-
-

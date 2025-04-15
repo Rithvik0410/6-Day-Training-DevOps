@@ -1,81 +1,128 @@
-📅 Day 3 – Infrastructure Automation using Terraform
-✅ Activities Covered:
-What is Terraform?
-Terraform is an Infrastructure as Code (IaC) tool that allows you to automate the provisioning and management of cloud resources such as EC2 instances, subnets, load balancers, VPCs, databases, internet gateways, etc., using scripts.
+# 📅 **Day 3 – Infrastructure Automation using Terraform**
 
-Why Use Terraform?
-Instead of manually creating resources from the AWS Console, Terraform lets us automate the entire infrastructure setup with reusable and version-controlled .tf scripts.
+## **Objective**
 
-⚙️ Setup Steps:
-Install Terraform on a Linux System
-Download Terraform and set the binary path properly.
+To understand the fundamentals of **Infrastructure as Code (IaC)** using **Terraform**, and automate the provisioning of cloud resources such as EC2 instances on AWS.
 
-Set the Terraform Path:
-Ensure the system recognizes the Terraform executable via environment variables or moving it to /usr/local/bin.
+---
 
-Configure AWS CLI:
-Install the AWS CLI and configure credentials using:
+## ✅ **Activities Covered**
 
+### 🌐 **What is Terraform?**
+
+Terraform is a powerful **open-source IaC tool** developed by HashiCorp. It allows us to define and manage cloud infrastructure through declarative configuration files written in **.tf (HCL - HashiCorp Configuration Language)** format.
+
+Instead of manually navigating the AWS Console, Terraform lets us:
+
+- **Automate** cloud provisioning.
+- **Version control** infrastructure.
+- **Re-use and scale** scripts for different environments.
+
+---
+
+### 🔍 **Why Use Terraform?**
+
+- Eliminates human error by automating repetitive tasks.
+- Infrastructure becomes **documented, reproducible, and auditable**.
+- Supports **multi-cloud deployments** (AWS, Azure, GCP, etc.).
+- Ideal for **DevOps pipelines**, ensuring consistent infrastructure setup.
+
+---
+
+## ⚙️ **Setup Steps**
+
+### ✅ 1. **Install Terraform on Linux**
+
+- Download the appropriate Terraform binary from the [official website](https://www.terraform.io/downloads).
+- Unzip the archive and move the binary to a directory in your system's `PATH`.
+
+```bash
+sudo mv terraform /usr/local/bin/
+terraform -v  # Confirm installation
+```
+
+---
+
+### ✅ 2. **Configure AWS CLI**
+
+To allow Terraform to interact with AWS services:
+
+```bash
+sudo yum install awscli -y
 aws configure
-🛠️ Terraform Script Structure
-When writing Terraform files, the following block types are commonly used:
+```
 
-provider block – Specifies the cloud provider (e.g., AWS, Azure).
+- Enter your **AWS Access Key**, **Secret Key**, **Region**, and **Output format**.
 
-resource block – Defines the cloud resource you want to create (e.g., EC2 instance, VPC).
+---
 
-variable block / .tfvars file – Declares inputs for your scripts to make them dynamic and reusable.
+## 🛠️ **Terraform Script Structure**
 
-output block / output.tf – Prints important values like public IPs or resource IDs to the console.
+Terraform files are modular and consist of the following key blocks:
 
-📝 Example: ec2.tf
+| Block Type | Description                                                 |
+| ---------- | ----------------------------------------------------------- |
+| `provider` | Defines the cloud provider (e.g., AWS, Azure, GCP).         |
+| `resource` | Declares the infrastructure components (e.g., EC2, VPC).    |
+| `variable` | Parameterizes inputs to make scripts reusable and dynamic.  |
+| `output`   | Displays important results like public IPs or instance IDs. |
 
+---
+
+### 📝 **Example: `ec2.tf` File**
+
+```hcl
 provider "aws" {
-region = "us-east-1"
+  region = "us-east-1"
 }
 
 resource "aws_instance" "web" {
-ami = "ami-02f624c08a83ca16f"
-instance_type = "t2.micro"
-key_name = "ash-server"
+  ami           = "ami-02f624c08a83ca16f"
+  instance_type = "t2.micro"
+  key_name      = "ash-server"
 
-tags = {
-Name = "rithvik"
+  tags = {
+    Name = "rithvik"
+  }
 }
-}
-To create an EC2 instance, ensure the following details are provided:
+```
 
-Amazon Machine Image (AMI) ID
+#### ✅ Key Configuration Elements:
 
-Instance type (e.g., t2.micro)
+- **AMI ID** – Specifies the OS image to use.
+- **Instance Type** – Defines hardware (e.g., `t2.micro` for free tier).
+- **Key Pair** – Used for secure SSH access.
+- **Tags** – Helps with resource identification and management.
 
-Key pair name
+---
 
-Storage (default or customized)
+## 🧪 **Terraform Workflow & Commands**
 
-Instance tag name
+| Command              | Description                                                       |
+| -------------------- | ----------------------------------------------------------------- |
+| `terraform init`     | Initializes the working directory and downloads provider plugins. |
+| `terraform validate` | Validates configuration for syntax and logic errors.              |
+| `terraform plan`     | Generates an execution plan (shows what will change).             |
+| `terraform apply`    | Applies the configuration to create/update resources.             |
+| `terraform destroy`  | Tears down the infrastructure defined in the scripts.             |
 
-🧪 Commands Used:
+> ⚠️ **Important**: After `terraform apply`, a `terraform.tfstate` file is generated. This file holds the current infrastructure state and **should be kept secure**.
 
-Command Description
-terraform init Initializes the working directory and downloads necessary plugins
-terraform validate Validates the configuration for syntax errors
-terraform plan Shows a preview of the changes Terraform will make
-terraform apply Applies the configuration to create the resources
-terraform destroy Destroys all resources created by Terraform
-Note:
+---
 
-After terraform plan or apply, a terraform.tfstate file is created to store the current infrastructure state. This file is sensitive and should be securely stored, ideally using Terraform Cloud or a remote backend.
+### 🧷 **Best Practices:**
 
-Never push .tfstate files to GitHub.
+- **Never commit `.tfstate` files to version control.**
+- Use **Terraform Cloud**, **S3**, or **remote backends** to store state files securely.
+- Parameterize your scripts with `variables.tf` and `terraform.tfvars` for reusability.
+- Use output variables for integration into other pipelines or for quick access to important data.
 
-💡 Key Takeaways:
-Understood the power of Infrastructure as Code with Terraform.
+---
 
-Wrote and executed scripts to automatically launch AWS EC2 instances.
+## 💡 **Key Takeaways**
 
-Learned the structure of .tf files and command workflows.
-
-Recognized the importance of secure state file storage.
-
-Gained clarity on how blocks like provider, resource, variable, and output work together in a Terraform project.
+- Gained **hands-on experience** in writing Terraform configuration files.
+- Successfully **automated the creation of an EC2 instance** with a few lines of code.
+- Understood the **structure and roles** of Terraform blocks (`provider`, `resource`, `variable`, `output`).
+- Learned the **Terraform command lifecycle** from initialization to destruction.
+- Recognized the importance of **state management** and the **security of `.tfstate` files**.

@@ -25,7 +25,7 @@ docker ps
 docker run -td --name web-app -p 3002:3000 muralisocial123/cart-page-test:1.0
 docker ps
 --------------------------------------------------------------------------------------
-git clone -b master https://github.com/Shrinidhi972004/Dimple-CapsuleProject.git
+git clone -b master https://github.com/rithvik972004/Dimple-CapsuleProject.git
 cd Dimple-CapsuleProject
 docker build -t web-app-nodejs:1.0 .
 docker images
