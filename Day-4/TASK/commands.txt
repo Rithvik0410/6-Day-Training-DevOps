@@ -1,0 +1,47 @@
+chmod 400 ".pemfile"
+-> paste ssh link of ur instance
+sudo su -> for root user
+yum install docker -y  -> for installing docker in linux server
+docker --version
+service docker status
+then start the server-> service docker start
+if you want to create ubuntu container -> docker create ubuntu /bin/bash
+it is going to show all the containers irrespective of the state ->  docker ps -a
+to create unique id and other thing -> docker start <id>
+docker ps command will show the running container  -> docker ps
+to show the status -> docker ps -a
+
+docker create -it --name webserver amazonlinux /bin/bash
+
+docker ps -a-> now u can see the container...
+docker start webserver
+docker ps -> to check whether its running up
+docker exec -it webserver /bin/bash
+ls
+exit -> to come out of the container
+this command takes inside the container of sample of ubuntu-> docker run -it --name sample ubuntu /bin/bash
+ctrl+pq to come out
+docker ps
+docker run -td --name web-app -p 3002:3000 muralisocial123/cart-page-test:1.0
+docker ps
+--------------------------------------------------------------------------------------
+git clone -b master https://github.com/Shrinidhi972004/Dimple-CapsuleProject.git
+cd Dimple-CapsuleProject
+docker build -t web-app-nodejs:1.0 .
+docker images
+docker inspect web-app-nodejs:1.0  -> to inspect or see the layers
+docker images
+docker run -td --name node-app -p 3015:3015 web-app-nodejs:1.0
+docker ps
+
+open docker hub
+
+docker exec -it node-app /bin/bash     here node-app is the name..check through docker ps
+exit
+docker login
+docker images
+docker tag web-app-nodejs:1.0 ashil/web-app-nodejs
+docker images
+docker push ashil/web-app-nodejs
+docker run -td --name web-app1 -p 3015:3015 ashil/web-app-nodejs:latest     ->in terminal
+

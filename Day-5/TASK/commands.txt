@@ -1,0 +1,41 @@
+kubernetes
+
+step1. create a jump server or bastion host
+
+connect to the server instance..
+
+step2. install kubectl,ecsctl and awscli
+step
+
+commands:
+
+chmod 400 "ashil-bastionhost.pem"
+ssh -i "ashil-bastionhost.pem" ubuntu@ec2-54-196-153-144.compute-1.amazonaws.com
+sudo su
+vi cluster.sh
+  \\\paste the text from github//installing kubernetes etc
+chmod 777 cluster.sh
+sh cluster.sh
+:wq
+aws configure
+//create user and copy the access code and secret key
+eskctl
+eksctl create cluster --name ashil-cluster --version 1.31 --region us-east-1 --nodegroup-name test-linux --node-type t2.micro --nodes 3 --nodes-min 3 --nodes-max 5 --managed
+snap install kubectl --classic
+aws eks update-kubeconfig --name ashil-cluster --region us-east-1
+kubectl get nodes  -> to see the the nodes..
+
+git clone https://github.com/ashil2003/ashil-kubernetes-manifests.git
+ ls
+ cd //to repo folder
+ kubectl apply -f pod.yaml
+ kubectl get pods
+ kubectl get pods -o wide
+ kubectl describe pod sample-pod
+ git clone -b master //repo
+ cd repo
+ ls
+ kubectl apply -f // .yml
+ kubectl get deployment
+ kubectl get suc
+ 

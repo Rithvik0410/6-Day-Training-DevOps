@@ -1,0 +1,19 @@
+      Monitoring SetUp : 
+
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+helm install prometheus prometheus-community/kube-prometheus-stack \
+  --namespace monitoring --create-namespace
+kubectl get pods -n monitoring
+
+kubectl patch svc prometheus-kube-prometheus-prometheus -n monitoring \
+  -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl get svc -n monitoring
+helm install grafana grafana/grafana --namespace monitoring
+kubectl get pods -n monitoring
+kubectl patch svc grafana -n monitoring \
+  -p '{"spec": {"type": "LoadBalancer"}}'
+To Get the Password : 
+
+kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode
