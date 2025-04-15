@@ -1,92 +1,157 @@
-Kubernetes Commands & Concepts (Day 6) 🧑‍💻
-Managing Namespaces 🌐
-Kubernetes allows you to partition a cluster into multiple isolated environments using Namespaces.
+# 📅 **Day 6 🧑‍💻 Kubernetes Commands & Concepts**
 
-🔹 List namespaces:
+---
+
+## 🌐 Managing Namespaces
+
+Namespaces in Kubernetes let you **partition a cluster** into multiple virtual environments.
+
+### 🔹 Common Namespace Commands:
+
+```bash
+# List namespaces
 kubectl get namespace
-🔹 Show all resources in kube-system namespace:
+
+# Show all resources in kube-system
 kubectl get all -n kube-system
-🔹 Create a custom namespace:
+
+# Create a new namespace
 kubectl create ns rithvik
-🔹 List all namespaces:
+
+# List all namespaces
 kubectl get ns
-Running Pods in a Namespace 🚀
-🔹 Run a pod in the custom namespace rithvik using the nginx image:
+```
+
+---
+
+## 🚀 Running Pods in a Namespace
+
+```bash
+# Run a Pod in namespace 'rithvik'
 kubectl run test-pod --image=nginx --port=80 -n rithvik
-🔹 Check if the pod was created in the rithvik namespace:
+
+# Check Pods in 'rithvik'
 kubectl get pods -n rithvik
-🔹 Delete the pod:
+
+# Delete a Pod in namespace 'ash'
 kubectl delete pod test-pod -n ash
-Replica Set (rs.yaml) 🔄
-🔹 Clone the repository to get rs.yaml:
-🔹 Apply the ReplicaSet configuration:
+```
+
+---
+
+## 🔄 ReplicaSet (rs.yaml)
+
+ReplicaSet ensures a **specific number of replicas** of a Pod are always running.
+
+```bash
+# Clone the repo (manually)
+git clone <repo-url>
+
+# Apply ReplicaSet
 kubectl apply -f rs.yaml
-🔹 Check the status of Pods and ReplicaSets:
+
+# Get Pods & ReplicaSets in 'ash'
 kubectl get pods -n ash
 kubectl get rs -n ash
-🔹 If a Pod is pending, check the detailed description:
-kubectl describe pod -n ash <pod-name>
-🔹 Delete the ReplicaSet:
+
+# Debug a pending Pod
+kubectl describe pod <pod-name> -n ash
+
+# Delete ReplicaSet
 kubectl delete rs cart-page-rs -n ash
-Deployments 🚀
-🔹 Deploy using a deployment.yaml file:
+```
+
+> ✅ ReplicaSets ensure high availability  
+> ❌ No built-in rollback → Use Deployments for lifecycle management
+
+---
+
+## 🚀 Deployments
+
+Deployments provide **version control, rollbacks, and rolling updates**.
+
+```bash
+# Apply deployment config
 kubectl apply -f deployment.yaml -n ash
-🔹 Check the deployment and pod status:
+
+# Check Deployment and Pods
 kubectl get deployments -n ash
 kubectl get pods -o wide -n ash
-Services 🌐
-🔹 Create a Service to expose the application:
+```
+
+---
+
+## 🌐 Services
+
+Kubernetes Services provide **network access** to Pods.
+
+```bash
+# Create a Service
 kubectl apply -f service.yaml
-🔹 If you face issues with resources, specify the namespace:
+
+# Apply resource with specific namespace
 kubectl apply -f name.yaml -n ash
-🔹 Get the URL to access the service (use with port number):
+
+# Get service endpoint URL and ports
 kubectl get svc -n ash
+```
 
-Kubernetes Core Concepts 📚
-🔸 What is a Namespace? 🌏
-A Namespace is a way to divide your cluster into isolated environments. It's useful when deploying multiple projects, ensuring they do not interfere with each other.
-⚠️ Never deploy applications in the default namespace for production environments.
-Pod Failure Management ⚠️
-Problems & Solutions:
-Application Downtime: Attach controllers like ReplicaSets or Deployments to maintain high availability.
+### 🔹 Types of Services
 
-IP Address Changes: Use Kubernetes Services for stable access.
+| Type             | Description                                 |
+| ---------------- | ------------------------------------------- |
+| **ClusterIP**    | Internal-only service                       |
+| **NodePort**     | Exposes app via a port on each node         |
+| **LoadBalancer** | External access through cloud load balancer |
 
-Data Loss: Attach persistent volumes to pods to ensure data durability.
+---
 
-ReplicaSet 🔄
-Ensures that a specified number of pod replicas are always running.
+## 📚 Kubernetes Core Concepts
 
-✅ Good for maintaining pod count
+### 🔸 What is a Namespace? 🌏
 
-❌ Not ideal for rollouts or rollbacks → use Deployments instead
+- Logical cluster separation.
+- Ideal for multi-project environments.
+- **Avoid using `default` namespace for production.**
 
-Deployments 🎯
-Higher-level abstraction over ReplicaSet
+---
 
-Supports rolling updates, rollbacks, and complete lifecycle management
+## ⚠️ Pod Failure Management
 
-Kubernetes Services 🛠️
-Types:
+| Problem      | Solution                             |
+| ------------ | ------------------------------------ |
+| App Downtime | Use **ReplicaSet** or **Deployment** |
+| IP Changes   | Use **Kubernetes Services**          |
+| Data Loss    | Attach **Persistent Volumes (PVs)**  |
 
-ClusterIP – Internal-only exposure within the cluster
+---
 
-NodePort – External access via static port on each node
+## 🔄 ReplicaSet vs 🎯 Deployment
 
-LoadBalancer – Exposes externally using a cloud provider’s load balancer
+| Feature            | ReplicaSet           | Deployment          |
+| ------------------ | -------------------- | ------------------- |
+| Maintain Pod Count | ✅                   | ✅                  |
+| Rollbacks          | ❌                   | ✅                  |
+| Rolling Updates    | ❌                   | ✅                  |
+| Best Use           | Stable replica count | Full lifecycle mgmt |
 
-Monitoring Kubernetes Applications 📊
-Prometheus:
+---
 
-Collects and stores time-series metrics
+## 📊 Monitoring Kubernetes Applications
 
-Grafana:
+### Prometheus
 
-Visualizes metrics in dashboard format
+- Collects time-series data (CPU, memory, etc.)
 
-Shows CPU, memory, and node health insights
+### Grafana
 
-Configuration Management 🔧
-Ansible:
+- Visualizes metrics in real-time dashboards.
 
-Automates Kubernetes resource setup, config, and deployment tasks.
+---
+
+## 🔧 Configuration Management
+
+### Ansible
+
+- Automates Kubernetes resource setup & deployment.
+- Ideal for managing large infrastructure with ease.

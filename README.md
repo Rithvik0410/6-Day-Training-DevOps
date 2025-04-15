@@ -1,1 +1,1 @@
-# 6-day-training-DevOps
+# Summary of Sklii Lab DevOps training
